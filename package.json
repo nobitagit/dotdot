@@ -1,0 +1,28 @@
+{
+  "name": "dotdot",
+  "version": "0.0.2",
+  "description": "add a dot every 3 integers in numeric form fields",
+  "main": "dotdot.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "grunt jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nobitagit/dotdot.git"
+  },
+  "keywords": [
+    "javascript"
+  ],
+  "author": "Nobita",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nobitagit/dotdot/issues"
+  },
+  "homepage": "https://github.com/nobitagit/dotdot",
+  "devDependencies": {
+    "grunt": "^0.4.5"
+  }
+}
