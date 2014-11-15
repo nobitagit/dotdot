@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/nobitagit/dotdot",
   "devDependencies": {
-    "grunt": "^0.4.5"
+    "grunt": "^0.4.5",
+    "grunt-contrib-jasmine": "^0.8.1"
   }
 }
