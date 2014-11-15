@@ -4,17 +4,31 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     jasmine: {
-      src: ['dotdot.js'],
+      src: ['src/dotdot.js'],
       options: {
         specs: 'test/*.spec.js',
       }
-    }
+    },
+    watch: {
+      test: {
+        files: ['src/**/*.js'],
+        tasks: ['jasmine']
+      }
+    },
+    jshint: {
+      all: ['src/**/*.js']
+    }    
   });
 
-  // Load the plugin that provides the "uglify" task.
+  // Load the plugins.
   grunt.loadNpmTasks('grunt-contrib-jasmine');
+  grunt.loadNpmTasks('grunt-contrib-watch'); 
+  grunt.loadNpmTasks('grunt-contrib-jshint');   
 
   // Default task(s).
+  grunt.registerTask('test-watch', ['watch:test']);
+  grunt.registerTask('test', ['jasmine']);
+  grunt.registerTask('build', ['jasmine', 'jshint']);
   grunt.registerTask('default', []);
 
 };
