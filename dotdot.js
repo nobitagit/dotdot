@@ -1,5 +1,27 @@
-(function(window, document, undefined){
-  function dotdot(el){
+;(function(window, document, undefined){
+
+  'use strict';
+
+  var DEFAULTS = {
+    paste: false
+  };
+  
+  function _extend( a, b ) {
+    for ( var prop in b ) {
+      if( b.hasOwnProperty(prop) ){
+        a[ prop ] = b[ prop ];        
+      }
+    }
+    return a;
+  }
+
+
+  var Dotdot = function( el, opts ){
+
+    if(opts){
+      DEFAULTS = _extend(DEFAULTS, opts);      
+    }
+
     el.addEventListener('keyup', function(){
       // prevent every character except numbers to be entered
       if(!this.value.slice(-1).match(/^[0-9]+\.?[0-9]*$/) ){
@@ -19,8 +41,8 @@
       // reverse, join and reassign the value
       this.value = a.reverse().join('');  
     }, false);
-  }
+  };
 
-  window.Dotdot = dotdot;
+  window.Dotdot = Dotdot;
 
 })(window, document);
