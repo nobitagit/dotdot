@@ -8,7 +8,7 @@ describe('dotdot', function() {
 		inputEl = document.createElement('input');
 		inputEl.id = 'myInput';
 		document.body.appendChild(inputEl);
-		Dotdot(inputEl);
+		//Dotdot(inputEl);
 	});
 
 	afterEach(function(){
@@ -24,10 +24,10 @@ describe('dotdot', function() {
     expect(Dotdot).not.toBe(undefined);
   });
 
-  it('should', function(){
+  it('should throw an error when no input element is passed as first param', function(){
   	// see: http://codepen.io/jweden/pen/Irmil/
   	// http://stackoverflow.com/questions/18055095/how-do-i-use-jasmine-to-test-a-text-length-counter
   	// http://stackoverflow.com/questions/19073570/how-to-add-jquery-to-jasmine-angularjs-unittests
-  	console.log(document)
+  	expect(Dotdot).toThrow();
   });
 });
