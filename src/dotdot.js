@@ -23,11 +23,12 @@
     // Don't execute anything if the user is just moving the cursor around and
     // not really enetring anything new.
     if(arrowKeys.indexOf(e.keyCode) !== -1){ return; }
-
-    // keep track of the cursor position
-    var cursorPos = this.selectionStart,
-    // remove the dots (and any non-integer character), 
-    // split the string and reverse it
+    // keep track of the cursor position for later
+    var cursorPos = this.selectionEnd,
+        len = this.value.length,
+        newLen,
+        // remove the dots (and any non-integer character), 
+        // split the string and reverse it
         a = this.value.replace(/\D/g,'').split('').reverse();
 
     // start from 3 and as long as there's a number 
@@ -37,8 +38,17 @@
       a.splice(pos,0,'.');
       pos = pos + 4;
     }  
+    newLen = a.length;    
     // reverse, join and reassign the value
     this.value = a.reverse().join(''); 
+    // Compare the original string with the generated one.
+    // If the 2 strings length are identical (hence no new dot was added)
+    // place the cursor at the same position it was placed in the beginning.
+    // If the strings length is different a new dot was added and we need to
+    // shift the cursor one step forward.
+    this.selectionEnd = len === newLen ? cursorPos : cursorPos + 1;
+    console.log(cursorPos%4)
+    this.focus();
   }
 
   var Dotdot = function( node, opts ){
