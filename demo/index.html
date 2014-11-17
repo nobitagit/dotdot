@@ -8,17 +8,28 @@
   </head>
   <body>
     <h1>dotdot</h1>
-    <p>Type any number in the input below.</p>
+    <p>Type any number in the inputs below.</p>
+
+    <h2>Attached to a single element</h2>
     <input type="text" id="myinput">
 
-    <script type="text/javascript" src="../dotdot.js"></script>
+    <h2>Attached to many elements</h2>
+    <input type="text" class="myinputs">
+    <input type="text" class="myinputs">
+    <input type="text" class="myinputs">
+    <input type="text" class="myinputs">
+
+    <script type="text/javascript" src="../src/dotdot.js"></script>
     <script>
       (function () {
         var el = document.getElementById('myinput');
 
-        Dotdot(el, {
-          paste: true
-        });
+        Dotdot(el);
+
+        var arr = document.getElementsByClassName('myinputs');
+
+        Dotdot(arr);
+
       })();    
     </script>
   </body>
