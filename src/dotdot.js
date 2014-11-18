@@ -24,13 +24,13 @@
   // place the cursor at the same position it was placed in the beginning.
   // If the new string is longer put the cursor one place forward.
   // if it's shorter put it one place backwards.
-  function _getSelectionEnd(len, newLen, curPos){
+  function _getSelectionEnd(len, newLen, cursorPos){
     if(len === newLen){
-      return curPos;
+      return cursorPos;
     } else if(newLen > len){
-      return curPos + 1;
+      return cursorPos + 1;
     } else {
-      return curPos - 1;
+      return cursorPos - 1;
     }
   }
 
