@@ -19,7 +19,22 @@
     elem.addEventListener('paste', _addDots, false); 
   }
 
-  function _addDots(e) {
+  // Compare the original string with the generated one.
+  // If the 2 strings length are identical (hence no new dot was added)
+  // place the cursor at the same position it was placed in the beginning.
+  // If the new string is longer put the cursor one place forward.
+  // if it's shorter put it one place backwards.
+  function _getSelectionEnd(len, newLen, curPos){
+    if(len === newLen){
+      return curPos;
+    } else if(newLen > len){
+      return curPos + 1;
+    } else {
+      return curPos - 1;
+    }
+  }
+
+  function _addDots( e ) {
     // Don't execute anything if the user is just moving the cursor around and
     // not really enetring anything new.
     if(arrowKeys.indexOf(e.keyCode) !== -1){ return; }
@@ -27,11 +42,6 @@
     var cursorPos = this.selectionEnd,
         len = this.value.length,
         newLen;
-
-    // trim any non integer character from pasted data
-    if(e.clipboardData){
-      e.clipboardData.getData('Text').replace(/\D/g,'');
-    }
 
     // remove the dots (and any non-integer character), 
     // split the string and reverse it
@@ -47,12 +57,8 @@
     newLen = a.length;    
     // reverse, join and reassign the value
     this.value = a.reverse().join(''); 
-    // Compare the original string with the generated one.
-    // If the 2 strings length are identical (hence no new dot was added)
-    // place the cursor at the same position it was placed in the beginning.
-    // If the strings length is different a new dot was added and we need to
-    // shift the cursor one step forward.
-    this.selectionEnd = len === newLen ? cursorPos : cursorPos + 1;
+
+    this.selectionEnd = _getSelectionEnd(len, newLen, cursorPos);
     this.focus();
   }
 
