@@ -26,10 +26,16 @@
     // keep track of the cursor position for later
     var cursorPos = this.selectionEnd,
         len = this.value.length,
-        newLen,
-        // remove the dots (and any non-integer character), 
-        // split the string and reverse it
-        a = this.value.replace(/\D/g,'').split('').reverse();
+        newLen;
+
+    // trim any non integer character from pasted data
+    if(e.clipboardData){
+      e.clipboardData.getData('Text').replace(/\D/g,'');
+    }
+
+    // remove the dots (and any non-integer character), 
+    // split the string and reverse it
+    var a = this.value.replace(/\D/g,'').split('').reverse();
 
     // start from 3 and as long as there's a number 
     // add a dot every three digits.
@@ -47,7 +53,6 @@
     // If the strings length is different a new dot was added and we need to
     // shift the cursor one step forward.
     this.selectionEnd = len === newLen ? cursorPos : cursorPos + 1;
-    console.log(cursorPos%4)
     this.focus();
   }
 
