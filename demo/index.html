@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>dotdot</title>
+    <title>dotdot demo</title>
   </head>
   <body>
-    <h1>dotdot</h1>
+    <h1>dotdot demo</h1>
     <p>Type any number in the inputs below.</p>
 
     <h2>Attached to a single element</h2>
@@ -19,6 +19,13 @@
     <input type="text" class="myinputs">
     <input type="text" class="myinputs">
 
+    <h2>It works with jQuery too</h2>
+    <input type="text" class="jQinputs">
+    <input type="text" class="jQinputs">
+    <input type="text" class="jQinputs">
+    <input type="text" class="jQinputs">
+
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="../src/dotdot.js"></script>
     <script>
       (function () {
@@ -30,6 +37,9 @@
 
         Dotdot(arr);
 
+        var jq = $('.jQinputs');
+
+        Dotdot(jq);
       })();    
     </script>
   </body>

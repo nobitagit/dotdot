@@ -19,6 +19,10 @@
     elem.addEventListener('paste', _addDots, false); 
   }
 
+  function _jqEvts( elem ) {
+    elem.on('keyup paste', _addDots);
+  }
+
   // Compare the original string with the generated one.
   // If the 2 strings length are identical (hence no new dot was added)
   // place the cursor at the same position it was placed in the beginning.
@@ -72,7 +76,9 @@
       DEFAULTS = _extend(DEFAULTS, opts);      
     }
 
-    if(node.length !== undefined){
+    if( window.jQuery && node instanceof jQuery){
+      _jqEvts(node);
+    } else if(node.length !== undefined){
       Array.prototype.forEach.call(node, _attachEvts);
     } else {
       _attachEvts(node);
