@@ -1,6 +1,6 @@
 {
   "name": "dotdot",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "add a dot every 3 integers in numeric form fields",
   "main": "dotdot.js",
   "directories": {
