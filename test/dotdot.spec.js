@@ -21,8 +21,6 @@ describe('dotdot', function() {
 		inputEl = document.createElement('input');
 		inputEl.id = 'myInput';
 		document.body.appendChild(inputEl);
-		//Dotdot(inputEl);
-
 	});
 
 	afterEach(function(){
@@ -60,7 +58,15 @@ describe('dotdot', function() {
     expect(inputEl.value).toBe('');       
   });
 
-  it('should not fire when just moving with arrows', function(){
+  it('should allow numeric chars in the field', function(){
+    Dotdot(inputEl);
+    inputEl.value = '7';
+    createEvt('keyup', 90);
+    inputEl.dispatchEvent(evts.keyup);
+    expect(inputEl.value).toBe('7');      
+  });
+
+  it('should not fire when just moving with arrow key inside the field', function(){
     // This string would normally be stripped if entered or copy pasted
     // but we use it in this test to make sure that the script does not fire when
     // using arrow keys only.
