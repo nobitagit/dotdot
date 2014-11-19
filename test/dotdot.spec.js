@@ -102,6 +102,27 @@ describe('dotdot', function() {
     inputEl.dispatchEvent(evts.paste); 
     expect(inputEl.value).toBe('42.418.887.779');       
   });
+
+  it('should work also when instantiated with HTML collections', function () {
+
+    var inputEl2 = document.createElement('input');
+    inputEl2.id = 'myInput2';
+    document.body.appendChild(inputEl2);
+    
+    var elems = document.getElementsByTagName('input');
+
+    Dotdot(elems);
+
+    inputEl.value = '123d4';
+    createEvt('keyup', 100);
+    inputEl.dispatchEvent(evts.keyup); 
+    expect(inputEl.value).toBe('1.234');
+
+    inputEl2.value = '1234';
+    createEvt('keyup', 100);
+    inputEl2.dispatchEvent(evts.keyup); 
+    expect(inputEl2.value).toBe('1.234');    
+  });
 });
 
 
