@@ -7,13 +7,14 @@ describe('dotdot', function() {
 	"use strict";
 
 	var inputEl,
-      keyupEvt,
-      pasteEvt;
+      evts = {};
 
-  function createKeyupEvt(key){
-    keyupEvt = document.createEvent('HTMLEvents');
-    keyupEvt.initEvent('keyup',true,false);
-    keyupEvt.keyCode = key;
+  function createEvt(evt, key){
+    evts[evt] = document.createEvent('HTMLEvents');
+    evts[evt].initEvent(evt,true,false);
+    if(key){
+      evts[evt].keyCode = key;      
+    }
   }
 
 	beforeEach(function() {
@@ -44,21 +45,21 @@ describe('dotdot', function() {
   	expect(Dotdot).toThrow();
   });
 
-  it('should not allow entering letters', function(){
+  it('should not allow entering non numeric chars in the field', function(){
     Dotdot(inputEl);
     inputEl.value = 'f';
-    createKeyupEvt(70);
-    inputEl.dispatchEvent(keyupEvt);
+    createEvt('keyup', 70);
+    inputEl.dispatchEvent(evts.keyup);
     expect(inputEl.value).toBe('');
 
     inputEl.value = 'm';
-    createKeyupEvt(77);
-    inputEl.dispatchEvent(keyupEvt);
+    createEvt('keyup', 77);
+    inputEl.dispatchEvent(evts.keyup);
     expect(inputEl.value).toBe(''); 
 
     inputEl.value = '.';
-    createKeyupEvt(190);
-    inputEl.dispatchEvent(keyupEvt);
+    createEvt('keyup', 190);
+    inputEl.dispatchEvent(evts.keyup);
     expect(inputEl.value).toBe('');       
   });
 
@@ -72,13 +73,35 @@ describe('dotdot', function() {
     inputEl.value = str;
 
     for(var i = 0; i < arrowKeys.length; i++){
-      createKeyupEvt(arrowKeys[i]);
-      inputEl.dispatchEvent(keyupEvt);
+      createEvt('keyup', arrowKeys[i]);
+      inputEl.dispatchEvent(evts.keyup);
       expect(inputEl.value).toBe(str);
     }   
   });
 
-    
+  it('should strip non numeric chars only when pasting a string with both integers and letters', function () {
+    Dotdot(inputEl);  
+    inputEl.value = 'aryydr....,779saa';  
+    createEvt('paste');
+    inputEl.dispatchEvent(evts.paste); 
+    expect(inputEl.value).toBe('779');       
+  });
+
+  it('should properly add a dot every 3 charachters in a number starting from the last integer', function () {
+    Dotdot(inputEl);  
+    inputEl.value = '1234567890';  
+    createEvt('paste');
+    inputEl.dispatchEvent(evts.paste); 
+    expect(inputEl.value).toBe('1.234.567.890');       
+  });
+
+  it('should properly add the dots to strings with mixed integers and other chars', function () {
+    Dotdot(inputEl);  
+    inputEl.value = 'ary4241yd888r..7..,779saa';  
+    createEvt('paste');
+    inputEl.dispatchEvent(evts.paste); 
+    expect(inputEl.value).toBe('42.418.887.779');       
+  });
 });
 
 
