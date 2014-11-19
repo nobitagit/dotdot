@@ -39,13 +39,14 @@
     // not really enetring anything new.
     if(arrowKeys.indexOf(e.keyCode) !== -1){ return; }
     // keep track of the cursor position for later
-    var cursorPos = this.selectionEnd,
-        len = this.value.length,
+    var elem = e.currentTarget,
+        cursorPos = elem.selectionEnd,
+        len = elem.value.length,
         newLen;
 
     // remove the dots (and any non-integer character), 
     // split the string and reverse it
-    var a = this.value.replace(/\D/g,'').split('').reverse();
+    var a = elem.value.replace(/\D/g,'').split('').reverse();
 
     // start from 3 and as long as there's a number 
     // add a dot every three digits.
@@ -56,10 +57,10 @@
     }  
     newLen = a.length;    
     // reverse, join and reassign the value
-    this.value = a.reverse().join(''); 
+    elem.value = a.reverse().join(''); 
 
-    this.selectionEnd = _getSelectionEnd(len, newLen, cursorPos);
-    this.focus();
+    elem.selectionEnd = _getSelectionEnd(len, newLen, cursorPos);
+    elem.focus();
   }
 
   var Dotdot = function( node, opts ){
