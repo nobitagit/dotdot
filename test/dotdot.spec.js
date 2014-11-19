@@ -4,9 +4,9 @@
 */
 describe('dotdot', function() {
 
-	"use strict";
+  "use strict";
 
-	var inputEl,
+  var inputEl,
       evts = {};
 
   function createEvt(evt, key){
@@ -17,11 +17,11 @@ describe('dotdot', function() {
     }
   }
 
-	beforeEach(function() {
-		inputEl = document.createElement('input');
-		inputEl.id = 'myInput';
-		document.body.appendChild(inputEl);
-	});
+  beforeEach(function() {
+    inputEl = document.createElement('input');
+    inputEl.id = 'myInput';
+    document.body.appendChild(inputEl);
+  });
 
 	afterEach(function(){
 		document.body.removeChild(inputEl);
@@ -100,7 +100,7 @@ describe('dotdot', function() {
 
   it('should properly add the dots to strings with mixed integers and other chars', function () {
     Dotdot(inputEl);  
-    inputEl.value = 'ary4241yd888r..7..,779saa';  
+    inputEl.value = 'ary4241yd888r..7..,779saa';
     createEvt('paste');
     inputEl.dispatchEvent(evts.paste); 
     expect(inputEl.value).toBe('42.418.887.779');       
