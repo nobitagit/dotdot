@@ -63,7 +63,6 @@
   }
 
   var Dotdot = function( node, opts ){
-
     if(!node){
       throw new Error('Dotdot needs an input element to be passed as a parameter');
     }
