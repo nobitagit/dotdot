@@ -23,9 +23,9 @@ describe('dotdot', function() {
     document.body.appendChild(inputEl);
   });
 
-	afterEach(function(){
-		document.body.removeChild(inputEl);
-	});
+  afterEach(function(){
+    document.body.removeChild(inputEl);
+  });
 
   it('check if the dummy input is correctly placed', function() {
     expect(inputEl).not.toBe(undefined);
