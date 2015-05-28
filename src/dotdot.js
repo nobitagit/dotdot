@@ -40,7 +40,7 @@
 
   function _addDots( e ) {
     // Don't execute anything if the user is just moving the cursor around and
-    // not really enetring anything new.
+    // not really entering anything new.
     if(arrowKeys.indexOf(e.keyCode) !== -1){ return; }
     // keep track of the cursor position for later
     var elem = e.currentTarget,
