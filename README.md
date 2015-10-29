@@ -16,6 +16,11 @@ Dotdot(elems);
 
 ```
 
+Get it with npm:
+```js
+npm i dotdot-mask
+```
+
 Look in the `demo/` folder for an example or check this [bin](http://jsbin.com/yateme/2).
 
 
