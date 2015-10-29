@@ -1,6 +1,6 @@
 {
-  "name": "dotdot",
-  "version": "1.2.0",
+  "name": "dotdot-mask",
+  "version": "1.2.1",
   "description": "A better mask for your HTML inputs. Add a dot every 3 integers in numeric form fields.",
   "main": "dotdot.js",
   "directories": {
